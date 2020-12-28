@@ -77,7 +77,7 @@ popd
 # libtool: where? /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool
 
 # get libffi:
-export M4=/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin//m4
+export M4=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin//m4
 echo "Compiling libffi:"
 pushd $FFI_SRCDIR
 # We need to patch libffi to allow compilation with Xcode 12, but only once (min iOS version >= 9)
@@ -184,9 +184,9 @@ cmake -G Ninja \
 -DCMAKE_INCLUDE_PATH=${OSX_BUILDDIR}/include/ \
 -DCMAKE_C_FLAGS="-target x86_64-apple-darwin19.0.0 -O2 -D_LIBCPP_STRING_H_HAS_CONST_OVERLOADS  -I${OSX_BUILDDIR}/include/ -I${OSX_BUILDDIR}/include/c++/v1/ -I${LLVM_SRCDIR} -mios-simulator-version-min=11.0  " \
 -DCMAKE_CXX_FLAGS="-target x86_64-apple-darwin19.0.0 -O2 -D_LIBCPP_STRING_H_HAS_CONST_OVERLOADS -I${OSX_BUILDDIR}/include/  -I${LLVM_SRCDIR} -mios-simulator-version-min=11.0 " \
--DCMAKE_MODULE_LINKER_FLAGS="-nostdlib -F${LLVM_SRCDIR}/ios_system.xcframework/ios-i386_x86_64-simulator -O2 -framework ios_system -lobjc -lc -lc++" \
--DCMAKE_SHARED_LINKER_FLAGS="-nostdlib -F${LLVM_SRCDIR}/ios_system.xcframework/ios-i386_x86_64-simulator -O2 -framework ios_system -lobjc -lc -lc++" \
--DCMAKE_EXE_LINKER_FLAGS="-nostdlib -F${LLVM_SRCDIR}/ios_system.xcframework/ios-i386_x86_64-simulator -O2 -framework ios_system -lobjc -lc -lc++" \
+-DCMAKE_MODULE_LINKER_FLAGS="-nostdlib -F${LLVM_SRCDIR}/ios_system.xcframework/ios-x86_64-simulator -O2 -framework ios_system -lobjc -lc -lc++" \
+-DCMAKE_SHARED_LINKER_FLAGS="-nostdlib -F${LLVM_SRCDIR}/ios_system.xcframework/ios-x86_64-simulator -O2 -framework ios_system -lobjc -lc -lc++" \
+-DCMAKE_EXE_LINKER_FLAGS="-nostdlib -F${LLVM_SRCDIR}/ios_system.xcframework/ios-x86_64-simulator -O2 -framework ios_system -lobjc -lc -lc++" \
 ..
 ninja
 # We could add X86 to target architectures, but that increases the app size too much
